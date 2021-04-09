@@ -3,12 +3,24 @@ var allPatterns = document.getElementsByClassName('pattern');
 var checkoutButton = document.getElementById('checkoutButton');
 var amountDisplay = document.getElementById('amountDisplay');
 
-let cartAmount = 0;
-
+// checkoutButton
 checkoutButton.addEventListener("click", function(){
     cartAmount += 1;
     amountDisplay.textContent = cartAmount;
+    localStorage.setItem("itemAmount", cartAmount);
+    var item = {
+        name: document.getElementById("product").innerHTML,
+        price: document.getElementById("price").innerHTML.slice(1),
+        color: document.querySelector(".product-color.selected").style.backgroundColor,
+        material: document.querySelector(".material-selection").value,
+        amount: document.querySelector(".amount-selection").value
+    }
+
+    localStorage.setItem(cartAmount.toString(), JSON.stringify(item));
+    console.log(JSON.parse(localStorage[cartAmount]));
 })
+
+
 
 // select color & pattern
 for (let i = 0; i < allBtns.length; i++) {
@@ -39,44 +51,8 @@ function myFunction() {
 }
 
 
-// console.log(colorInnerHTML)
-
-
-// .innerHTML => string, 
-
-// .classList => array of strings (class names)
-//         ["product-color", "selected"]
-//            .add / .remove / .toggle
-
-// element.classList.add("newClass") 
-//=> ["product-color", "selected", "newClass"]
-// => class="product-color selecteda newClass"
 
 
 
 
 
-
-
-
-
-
-// .style
-
-
-
-// var colorBtns = document.getElementsByClassName("product-color");
-
-// // [btn1, btn2, btn3, btn4]
-
-// for (let i = 0; i < colorBtns.length; i++) {
-//     let button = colorBtns[i];
-//     button.addEventListener("click", select);
-// }
-
-// function select() {
-//     for (let j = 0; j < colorBtns.length; j++) {
-//         colorBtns[j].classList.remove("selected");
-//     }
-//     this.classList.add("selected");
-// }
